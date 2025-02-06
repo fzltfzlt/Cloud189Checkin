@@ -78,11 +78,12 @@ const pushServerChan = (title, desp) => {
   if (!serverChan.sendKey) {
     return;
   }
+  const encodedUrl = encodeURI(`https://api.day.app/${serverChan.sendKey}/${title}/${desp}`);
   superagent
-    .get(`https://api.day.app/${serverChan.sendKey}/${title}/${desp}`)
+    .get(encodedUrl)
     .then((response) => {
       // 请求成功
-      console.log('Response:', response.body);
+      console.log('Bark Response:', response.body);
     })
     .catch((error) => {
       // 请求失败
