@@ -80,17 +80,13 @@ const pushServerChan = (title, desp) => {
   }
   superagent
     .get(`https://api.day.app/${serverChan.sendKey}/${title}/${desp}`)
-    .end((err, res) => {
-      if (err) {
-        logger.error(`ServerChan推送失败:${JSON.stringify(err)}`);
-        return;
-      }
-      const json = JSON.parse(res.text);
-      if (json.code !== 0) {
-        logger.error(`ServerChan推送失败:${JSON.stringify(json)}`);
-      } else {
-        logger.info("ServerChan推送成功");
-      }
+    .then((response) => {
+      // 请求成功
+      console.log('Response:', response.body);
+    })
+    .catch((error) => {
+      // 请求失败
+      logger.error(`Bark推送失败:${JSON.stringify(error)}`);
     });
 };
 
