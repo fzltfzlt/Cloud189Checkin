@@ -78,14 +78,8 @@ const pushServerChan = (title, desp) => {
   if (!serverChan.sendKey) {
     return;
   }
-  const data = {
-    title,
-    desp,
-  };
   superagent
-    .post(`https://sctapi.ftqq.com/${serverChan.sendKey}.send`)
-    .type("form")
-    .send(data)
+    .get(`https://api.day.app/${serverChan.sendKey}/${title}/${desp}`)
     .end((err, res) => {
       if (err) {
         logger.error(`ServerChan推送失败:${JSON.stringify(err)}`);
