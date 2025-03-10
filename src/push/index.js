@@ -144,6 +144,7 @@ const pushBark = (title, desp) => {
   if (!bark.deviceKey) {
     return;
   }
+  logger.info(`Bark推送: ${bark.apiServer} - ${bark.deviceKey}`);
   const encodedUrl = encodeURI(`${bark.apiServer}/${bark.deviceKey}/${title}/${desp}`);
   logger.info(`Bark推送: ${encodedUrl}`);
   superagent
