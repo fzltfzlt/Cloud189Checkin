@@ -145,6 +145,7 @@ const pushBark = (title, desp) => {
     return;
   }
   const encodedUrl = encodeURI(`${bark.apiServer}/${bark.deviceKey}/${title}/${desp}`);
+  logger.info(`Bark推送: ${encodedUrl}`);
   superagent
     .get(encodedUrl)
     .then((response) => {
